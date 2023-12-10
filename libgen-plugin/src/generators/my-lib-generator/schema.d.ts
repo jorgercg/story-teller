@@ -1,5 +1,6 @@
 export interface MyLibGeneratorGeneratorSchema {
   name: string;
+  directory: string;
   importPath?: string;
   standalone?: boolean;
   buildable?: boolean;
