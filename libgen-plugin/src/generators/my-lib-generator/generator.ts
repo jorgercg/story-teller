@@ -11,7 +11,7 @@ export async function myLibGeneratorGenerator(
   tree: Tree,
   options: MyLibGeneratorGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
+  const projectRoot = `libs`;
 
   options.buildable = true;
   options.standalone = true;
