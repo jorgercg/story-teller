@@ -25,11 +25,11 @@ export async function myLibGeneratorGenerator(
 
   await libraryGenerator(tree, options);
 
-  tree.delete(`${projectRoot}/tailwind.config.js`);
+  tree.delete(`${projectRoot}/${options.name}/tailwind.config.js`);
 
-  tree.delete(`${projectRoot}/README.md`);
+  tree.delete(`${projectRoot}/${options.name}/README.md`);
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+  generateFiles(tree, path.join(__dirname, 'files'), `libs/${options.name}`, {
     tmpl: '',
     name: options.name,
   });
