@@ -1,0 +1,23 @@
+{
+  "name": "my-tw-preset",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/my-tw-preset/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/my-tw-preset",
+        "main": "libs/my-tw-preset/src/index.ts",
+        "tsConfig": "libs/my-tw-preset/tsconfig.lib.json",
+        "assets": ["libs/my-tw-preset/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}
