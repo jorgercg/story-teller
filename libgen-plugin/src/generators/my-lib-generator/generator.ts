@@ -23,7 +23,7 @@ export async function myLibGeneratorGenerator(
     targets: {},
   });
 
-  options.publishable = false;
+  options.buildable = true;
   options.standalone = true;
   options.style = 'none';
   options.addTailwind = true;
