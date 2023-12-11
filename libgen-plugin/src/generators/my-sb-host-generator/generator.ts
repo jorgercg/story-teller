@@ -1,5 +1,7 @@
 import { formatFiles, Tree } from '@nx/devkit';
 import { libraryGenerator, UnitTestRunner } from '@nx/angular/generators';
+import { configurationGenerator } from '@nx/storybook/src/generators/configuration/configuration';
+import { StorybookConfigureSchema } from '@nx/storybook/src/generators/configuration/schema';
 
 import { MySbHostGeneratorGeneratorSchema } from './schema';
 
@@ -21,6 +23,14 @@ export async function mySbHostGeneratorGenerator(
   options.skipTests = true;
 
   await libraryGenerator(tree, options);
+
+  const storybookConfig: StorybookConfigureSchema = {
+    project: options.name,
+    uiFramework: '@storybook/angular',
+  };
+
+  await configurationGenerator(tree, storybookConfig);
+
 
   await formatFiles(tree);
 }
