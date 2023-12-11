@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@my/my-pie": ["libs/my-pie/src/index.ts"],
       "@my/my-sb-host": ["libs/my-sb-host/src/index.ts"],
       "@my/my-tw-preset": ["libs/my-tw-preset/src/index.ts"],
       "@story-teller/libgen-plugin": ["libgen-plugin/src/index.ts"]
