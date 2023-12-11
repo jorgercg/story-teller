@@ -4,6 +4,11 @@
       "factory": "./src/generators/my-lib-generator/generator",
       "schema": "./src/generators/my-lib-generator/schema.json",
       "description": "my-lib-generator generator"
+    },
+    "my-sb-host-generator": {
+      "factory": "./src/generators/my-sb-host-generator/generator",
+      "schema": "./src/generators/my-sb-host-generator/schema.json",
+      "description": "my-sb-host-generator generator"
     }
   }
 }

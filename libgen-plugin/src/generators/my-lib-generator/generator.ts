@@ -1,11 +1,9 @@
-import { formatFiles, generateFiles, Tree } from '@nx/devkit';
+import { formatFiles, names, Tree } from '@nx/devkit';
 import { libraryGenerator } from '@nx/angular/generators';
 import { configurationGenerator } from '@nx/storybook/src/generators/configuration/configuration';
-
-import * as path from 'path';
+import { StorybookConfigureSchema } from '@nx/storybook/src/generators/configuration/schema';
 
 import { MyLibGeneratorGeneratorSchema } from './schema';
-import { StorybookConfigureSchema } from '@nx/storybook/src/generators/configuration/schema';
 
 export async function myLibGeneratorGenerator(
   tree: Tree,
@@ -27,12 +25,37 @@ export async function myLibGeneratorGenerator(
 
   tree.delete(`${projectRoot}/${options.name}/tailwind.config.js`);
 
+  const newTaildinConfig = `const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
+    const { join } = require('path');
+    const sharedTailwindConfig = require('../bms-tw-preset/src/lib/bms-tw-preset');
+    
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+      presets: [sharedTailwindConfig.bmsTwPreset],
+      content: [join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'), ...createGlobPatternsForDependencies(__dirname)],
+    };`;
+
+  tree.write(
+    `${projectRoot}/${options.name}/tailwind.config.js`,
+    newTaildinConfig
+  );
+
   tree.delete(`${projectRoot}/${options.name}/README.md`);
 
-  generateFiles(tree, path.join(__dirname, 'files'), `libs/${options.name}`, {
-    tmpl: '',
-    name: options.name,
-  });
+  const newReadme = `# ${names(options.name).className}
+
+  [Back UP](../../README.md)
+
+  ## Properties
+
+  | Name               | Description                              | Type                                                 | Default    |
+  | ------------------ | ---------------------------------------- | ---------------------------------------------------- | ---------- |
+
+  ## Usage
+
+  `;
+
+  tree.write(`${projectRoot}/${options.name}/README.md`, newReadme);
 
   const storybookConfig: StorybookConfigureSchema = {
     project: options.name,
