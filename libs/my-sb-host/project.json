@@ -6,6 +6,23 @@
   "tags": [],
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/my-sb-host/ng-package.json",
+        "tailwindConfig": "libs/my-sb-host/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/my-sb-host/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/my-sb-host/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
@@ -31,7 +48,8 @@
         "outputDir": "dist/storybook/my-sb-host",
         "configDir": "libs/my-sb-host/.storybook",
         "browserTarget": "my-sb-host:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": ["libs/my-sb-host/src/tailwind.css"]
       },
       "configurations": {
         "ci": {

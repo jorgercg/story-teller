@@ -1,3 +1,3 @@
 # my-sb-host
 
-This library was generated with [Nx](https://nx.dev).
+This is only a host for Storybook. It is not a library.

@@ -1,4 +1,3 @@
-const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 const sharedTailwindConfig = require('../my-tw-preset/src/lib/my-tw-preset');
 
@@ -6,7 +5,6 @@ const sharedTailwindConfig = require('../my-tw-preset/src/lib/my-tw-preset');
 module.exports = {
   presets: [sharedTailwindConfig.myTwPreset],
   content: [
-    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    ...createGlobPatternsForDependencies(__dirname),
+    join('libs/my-pie/src/lib/!(*.stories|*.spec).{ts,html}'),
   ],
 };

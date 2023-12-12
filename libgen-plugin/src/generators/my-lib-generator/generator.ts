@@ -25,19 +25,23 @@ export async function myLibGeneratorGenerator(
 
   tree.delete(`${projectRoot}/${options.name}/tailwind.config.js`);
 
-  const newTaildinConfig = `const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
-    const { join } = require('path');
-    const sharedTailwindConfig = require('../bms-tw-preset/src/lib/bms-tw-preset');
-    
-    /** @type {import('tailwindcss').Config} */
-    module.exports = {
-      presets: [sharedTailwindConfig.bmsTwPreset],
-      content: [join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'), ...createGlobPatternsForDependencies(__dirname)],
-    };`;
+  const newTailwindConfig = `const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
+  const { join } = require('path');
+  const sharedTailwindConfig = require('../my-tw-preset/src/lib/my-tw-preset');
+  
+  /** @type {import('tailwindcss').Config} */
+  module.exports = {
+    presets: [sharedTailwindConfig.myTwPreset],
+    content: [
+      join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+      ...createGlobPatternsForDependencies(__dirname),
+    ],
+  };
+  `;
 
   tree.write(
     `${projectRoot}/${options.name}/tailwind.config.js`,
-    newTaildinConfig
+    newTailwindConfig
   );
 
   tree.delete(`${projectRoot}/${options.name}/README.md`);

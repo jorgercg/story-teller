@@ -1,1 +1,58 @@
-<p>my-pie works!</p>
+<div class="relative w-full" [ngStyle]="componentContainerStyle">
+  <svg
+    class="absolute top-0 left-0"
+    [attr.width]="strokeWidth + radius * 2"
+    [attr.height]="strokeWidth / 2 + radius"
+    [attr.viewBox]="
+      '0 0 ' + (strokeWidth + radius * 2) + ' ' + (strokeWidth + radius)
+    "
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      [attr.stroke]="valueColor"
+      [attr.stroke-width]="strokeWidth"
+      [attr.d]="
+        'M ' +
+        xStart +
+        ' ' +
+        yStart +
+        ' A ' +
+        radius +
+        ' ' +
+        radius +
+        ' 0 0 1 ' +
+        xValue +
+        ' ' +
+        yValue
+      "
+    />
+
+    <path
+      [attr.stroke]="baseColor"
+      [attr.stroke-width]="strokeWidth"
+      [attr.d]="
+        'M ' +
+        xValue +
+        ' ' +
+        yValue +
+        ' A ' +
+        radius +
+        ' ' +
+        radius +
+        ' 0 0 1 ' +
+        xEnd +
+        ' ' +
+        yEnd
+      "
+    />
+  </svg>
+  <div class="pb-2 h-full flex flex-col justify-end items-center">
+    <div class="text-p-x-small-medium text-neutral-500">
+      {{ currentValue }}/{{ maxValue }}
+    </div>
+    <div class="text-h4-bold-desktop text-neutral-500">
+      {{ (currentValue / maxValue) * 100 | number : '1.0-0' }}%
+    </div>
+  </div>
+</div>
