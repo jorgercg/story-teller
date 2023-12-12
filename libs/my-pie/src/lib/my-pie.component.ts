@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,10 +11,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './my-pie.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyPieComponent implements OnInit {
   @Input() colorPalette: 'primary' | 'warning' | 'success' = 'primary';
-  @Input() currentValue = 20;
+  @Input() currentValue = 0;
   @Input() maxValue = 100;
   @Input() strokeWidth = 22;
   @Input() radius = 92;

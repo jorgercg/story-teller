@@ -12,7 +12,24 @@ export default meta;
 type Story = StoryObj<MyPieComponent>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    colorPalette: 'primary',
+    currentValue: 50,
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    colorPalette: 'warning',
+    currentValue: 50,
+  },
+};
+
+export const Success: Story = {
+  args: {
+    colorPalette: 'success',
+    currentValue: 50,
+  },
 };
 
 export const Heading: Story = {
