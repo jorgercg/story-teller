@@ -2,7 +2,9 @@
   "name": "@story-teller/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "run-storybook":"npx nx run my-sb-host:storybook"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "~17.0.0",
